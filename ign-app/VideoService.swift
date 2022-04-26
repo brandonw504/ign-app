@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 /*
  API link
@@ -32,6 +31,13 @@ class VideoService: ObservableObject {
                 let videos = try JSONDecoder().decode(Videos.self, from: data)
                 DispatchQueue.main.async {
                     self?.videos = videos
+                    let commentService = CommentService()
+                    for (index, video) in videos.data.enumerated() {
+                        commentService.contentID = video.contentID
+                        commentService.fetch { comments in
+                            self?.videos.data[index].commentCount = comments?.content.first?.count ?? 0
+                        }
+                    }
                 }
             } catch {
                 print(error)

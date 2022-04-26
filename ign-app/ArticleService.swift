@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 /*
  API link
@@ -32,6 +31,13 @@ class ArticleService: ObservableObject {
                 let articles = try JSONDecoder().decode(Articles.self, from: data)
                 DispatchQueue.main.async {
                     self?.articles = articles
+                    let commentService = CommentService()
+                    for (index, article) in articles.data.enumerated() {
+                        commentService.contentID = article.contentID
+                        commentService.fetch { comments in
+                            self?.articles.data[index].commentCount = comments?.content.first?.count ?? 0
+                        }
+                    }
                 }
             } catch {
                 print(error)

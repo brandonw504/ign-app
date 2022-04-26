@@ -15,7 +15,7 @@ import Foundation
 // MARK: - Articles
 struct Articles: Codable {
     let count, startIndex: Int
-    let data: [Article]
+    var data: [Article]
 }
 
 // MARK: - Article
@@ -26,6 +26,7 @@ struct Article: Hashable, Codable {
     let metadata: ArticleMetadata
     let tags: [String]
     let authors: [Author]
+    var commentCount: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case contentID = "contentId"

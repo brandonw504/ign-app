@@ -16,7 +16,7 @@ import SwiftUI
 // MARK: - Videos
 struct Videos: Hashable, Codable {
     let count, startIndex: Int
-    let data: [Video]
+    var data: [Video]
 }
 
 // MARK: - Video
@@ -27,6 +27,7 @@ struct Video: Hashable, Codable {
     let metadata: VideoMetadata
     let tags: [String]
     let assets: [Asset]
+    var commentCount: Int = 0
 
     enum CodingKeys: String, CodingKey {
         case contentID = "contentId"
