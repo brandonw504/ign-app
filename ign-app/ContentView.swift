@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AVKit
 
 struct AuthorView: View {
     var author: Author
@@ -29,8 +28,11 @@ struct ArticleView: View {
     
     var body: some View {
         Section {
-            VStack{
-                Text(article.metadata.timeSincePublish).padding(3)
+            VStack {
+                HStack {
+                    Text(article.metadata.timeSincePublish).padding(3).font(.system(size: 12))
+                    Spacer()
+                }
                 Text(article.metadata.headline).font(.headline).padding(3)
                 if let url = article.thumbnails.last?.url {
                     AsyncImage(url: URL(string: url)) { image in
@@ -48,6 +50,7 @@ struct ArticleView: View {
                     }
                 }
                 HStack {
+                    Spacer()
                     Image(systemName: "message")
                     Text("\(article.commentCount)")
                 }
@@ -62,27 +65,30 @@ struct VideoView: View {
     
     var body: some View {
         Section {
-            VStack{
-                Text(video.metadata.timeSincePublish).padding(3)
-                Text(video.metadata.title).font(.headline)
-                if let url = video.thumbnails.last?.url {
-                    AsyncImage(url: URL(string: url)) { image in
-                        image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
-                    } placeholder: {
-                        ProgressView()
+            ZStack {
+                VStack {
+                    HStack {
+                        Text(video.metadata.timeSincePublish).padding(3).font(.system(size: 12))
+                        Spacer()
                     }
-                }
-                if let url = video.assets.last?.url {
-                    VideoPlayer(player: AVPlayer(url: URL(string: url)!)).cornerRadius(15).frame(height: 200)
-                    if let desc = video.metadata.metadataDescription {
-                        Text(desc)
+                    if let url = video.thumbnails.last?.url {
+                        AsyncImage(url: URL(string: url)) { image in
+                            image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                        } placeholder: {
+                            ProgressView()
+                        }
                     }
+                    Text(video.metadata.title).font(.headline)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "message")
+                        Text("\(video.commentCount)")
+                    }
+                    .padding(5)
                 }
-                HStack {
-                    Image(systemName: "message")
-                    Text("\(video.commentCount)")
+                NavigationLink(destination: VideoDetailView(video: video)) {
+                    EmptyView()
                 }
-                .padding(5)
             }
         }
     }
