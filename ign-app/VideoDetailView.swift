@@ -10,6 +10,7 @@ import AVKit
 
 struct VideoDetailView: View {
     var video: Video
+    @State private var comment: String = ""
     
     var body: some View {
         VStack {
@@ -20,6 +21,12 @@ struct VideoDetailView: View {
                     Text(desc)
                 }
             }
+            TextField("Comment...", text: $comment)
+//                .onSubmit {
+//
+//                }
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
         }
         .padding(10)
         .frame(alignment: .top)
