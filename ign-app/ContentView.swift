@@ -12,13 +12,16 @@ struct AuthorView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: author.thumbnail)) { image in
-                image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
-            } placeholder: {
-                ProgressView()
+            if (author.thumbnail != "") {
+                AsyncImage(url: URL(string: author.thumbnail)) { image in
+                    image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                } placeholder: {
+                    ProgressView()
+                }
+                .padding(3)
             }
-            .padding(3)
-            Text(author.name)
+            Text(author.name).font(.system(size: 12))
+            Spacer()
         }
     }
 }
@@ -33,7 +36,11 @@ struct ArticleView: View {
                     Text(article.metadata.timeSincePublish).padding(3).font(.system(size: 12))
                     Spacer()
                 }
-                Text(article.metadata.headline).font(.headline).padding(3)
+                Divider()
+                HStack {
+                    Text(article.metadata.headline).font(.headline).padding(3)
+                    Spacer()
+                }
                 if let url = article.thumbnails.last?.url {
                     AsyncImage(url: URL(string: url)) { image in
                         image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
@@ -49,6 +56,7 @@ struct ArticleView: View {
                         AuthorView(author: author)
                     }
                 }
+                Divider()
                 HStack {
                     Spacer()
                     Image(systemName: "message")
@@ -71,6 +79,7 @@ struct VideoView: View {
                         Text(video.metadata.timeSincePublish).padding(3).font(.system(size: 12))
                         Spacer()
                     }
+                    Divider()
                     if let url = video.thumbnails.last?.url {
                         AsyncImage(url: URL(string: url)) { image in
                             image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
@@ -78,7 +87,11 @@ struct VideoView: View {
                             ProgressView()
                         }
                     }
-                    Text(video.metadata.title).font(.headline)
+                    HStack {
+                        Text(video.metadata.title).font(.headline)
+                        Spacer()
+                    }
+                    Divider()
                     HStack {
                         Spacer()
                         Image(systemName: "message")

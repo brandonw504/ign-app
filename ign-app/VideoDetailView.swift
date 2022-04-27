@@ -10,26 +10,22 @@ import AVKit
 
 struct VideoDetailView: View {
     var video: Video
-    @State private var comment: String = ""
     
     var body: some View {
-        VStack {
-            Text(video.metadata.title).font(.headline)
-            if let url = video.assets.last?.url {
-                VideoPlayer(player: AVPlayer(url: URL(string: url)!)).cornerRadius(15).frame(height: 200)
+        ScrollView(.vertical) {
+            VStack {
+                Text(video.metadata.title).font(.headline)
+                if let url = video.assets.last?.url {
+                    VideoPlayer(player: AVPlayer(url: URL(string: url)!)).cornerRadius(15).frame(height: 200)
+                }
+                Divider()
                 if let desc = video.metadata.metadataDescription {
                     Text(desc)
                 }
             }
-            TextField("Comment...", text: $comment)
-//                .onSubmit {
-//
-//                }
-                .textInputAutocapitalization(.never)
-                .disableAutocorrection(true)
+            .padding(10)
+            .frame(alignment: .top)
+            Spacer()
         }
-        .padding(10)
-        .frame(alignment: .top)
-        Spacer()
     }
 }
