@@ -40,7 +40,7 @@ struct Author: Hashable, Codable {
     let thumbnail: String
 }
 
-enum ArticleContentType: String, Hashable, Codable {
+enum ArticleContentType: String, Codable {
     case article = "article"
 }
 
@@ -62,11 +62,11 @@ struct ArticleMetadata: Hashable, Codable {
     }
 }
 
-enum ArticleNetwork: String, Hashable, Codable {
+enum ArticleNetwork: String, Codable {
     case ign = "ign"
 }
 
-enum ArticleState: String, Hashable, Codable {
+enum ArticleState: String, Codable {
     case published = "published"
 }
 
@@ -77,7 +77,7 @@ struct ArticleThumbnail: Hashable, Codable {
     let width, height: Int
 }
 
-enum ArticleSize: String, Hashable, Codable {
+enum ArticleSize: String, Codable {
     case compact = "compact"
     case large = "large"
     case medium = "medium"

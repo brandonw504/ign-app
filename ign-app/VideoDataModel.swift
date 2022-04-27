@@ -42,13 +42,13 @@ struct Asset: Hashable, Codable {
     let size: VideoSize?
 }
 
-enum VideoSize: String, Hashable, Codable {
+enum VideoSize: String, Codable {
     case compact = "compact"
     case large = "large"
     case medium = "medium"
 }
 
-enum VideoContentType: String, Hashable, Codable {
+enum VideoContentType: String, Codable {
     case video = "video"
 }
 
@@ -70,10 +70,10 @@ struct VideoMetadata: Hashable, Codable {
     }
 }
 
-enum VideoNetwork: String, Hashable, Codable {
+enum VideoNetwork: String, Codable {
     case ign = "ign"
 }
 
-enum VideoState: String, Hashable, Codable {
+enum VideoState: String, Codable {
     case published = "published"
 }

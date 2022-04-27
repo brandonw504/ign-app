@@ -23,6 +23,7 @@ class CommentService: ObservableObject {
         }
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            // make sure there is actually data
             guard let data = data, error == nil else {
                 print("Error")
                 completion(nil)

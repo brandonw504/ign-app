@@ -21,7 +21,7 @@ struct VideoDetailView: View {
                 }
             }
         }
-        .padding(5)
+        .padding(10)
         .frame(alignment: .top)
         Spacer()
     }
