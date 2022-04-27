@@ -24,7 +24,7 @@ struct Video: Hashable, Codable {
     let contentID: String
     let contentType: VideoContentType
     let thumbnails: [Asset]
-    let metadata: VideoMetadata
+    var metadata: VideoMetadata
     let tags: [String]
     let assets: [Asset]
     var commentCount: Int = 0
@@ -56,6 +56,7 @@ enum VideoContentType: String, Hashable, Codable {
 struct VideoMetadata: Hashable, Codable {
     let title, metadataDescription: String
     let publishDate: String
+    var timeSincePublish: String = "0 seconds ago"
     let slug: String
     let networks: [VideoNetwork]
     let state: VideoState

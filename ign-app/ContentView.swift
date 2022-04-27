@@ -14,7 +14,7 @@ struct AuthorView: View {
     var body: some View {
         HStack {
             AsyncImage(url: URL(string: author.thumbnail)) { image in
-                image.resizable().aspectRatio(contentMode: .fill).cornerRadius(15)
+                image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
             } placeholder: {
                 ProgressView()
             }
@@ -30,11 +30,14 @@ struct ArticleView: View {
     var body: some View {
         Section {
             VStack{
+                Text(article.metadata.timeSincePublish).padding(3)
                 Text(article.metadata.headline).font(.headline).padding(3)
-                AsyncImage(url: URL(string: article.thumbnails[2].url)) { image in
-                    image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
-                } placeholder: {
-                    ProgressView()
+                if let url = article.thumbnails.last?.url {
+                    AsyncImage(url: URL(string: url)) { image in
+                        image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                    } placeholder: {
+                        ProgressView()
+                    }
                 }
                 if let desc = article.metadata.metadataDescription {
                     Text(desc)
@@ -60,15 +63,20 @@ struct VideoView: View {
     var body: some View {
         Section {
             VStack{
+                Text(video.metadata.timeSincePublish).padding(3)
                 Text(video.metadata.title).font(.headline)
-                AsyncImage(url: URL(string: video.thumbnails[2].url)) { image in
-                    image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
-                } placeholder: {
-                    ProgressView()
+                if let url = video.thumbnails.last?.url {
+                    AsyncImage(url: URL(string: url)) { image in
+                        image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                    } placeholder: {
+                        ProgressView()
+                    }
                 }
-                VideoPlayer(player: AVPlayer(url:  URL(string: video.assets.last!.url)!)).cornerRadius(15).frame(height: 200)
-                if let desc = video.metadata.metadataDescription {
-                    Text(desc)
+                if let url = video.assets.last?.url {
+                    VideoPlayer(player: AVPlayer(url: URL(string: url)!)).cornerRadius(15).frame(height: 200)
+                    if let desc = video.metadata.metadataDescription {
+                        Text(desc)
+                    }
                 }
                 HStack {
                     Image(systemName: "message")
@@ -104,6 +112,7 @@ struct ContentView: View {
                         }
                     }
                     .navigationTitle("IGN")
+                    .navigationBarTitleDisplayMode(.inline)
                     .onAppear {
                         articleService.fetch()
                     }
@@ -114,6 +123,7 @@ struct ContentView: View {
                         }
                     }
                     .navigationTitle("IGN")
+                    .navigationBarTitleDisplayMode(.inline)
                     .onAppear {
                         videoService.fetch()
                     }

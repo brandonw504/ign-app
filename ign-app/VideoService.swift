@@ -14,6 +14,7 @@ import Foundation
 
 class VideoService: ObservableObject {
     @Published var videos: Videos = Videos(count: 0, startIndex: 0, data: [])
+    let dateFormatter = ISO8601DateFormatter()
     
     func fetch() {
         guard let url = URL(string: "https://ign-apis.herokuapp.com/videos") else {
@@ -37,6 +38,9 @@ class VideoService: ObservableObject {
                         commentService.fetch { comments in
                             self?.videos.data[index].commentCount = comments?.content.first?.count ?? 0
                         }
+                        let date = self?.dateFormatter.date(from: video.metadata.publishDate)!
+                        let now = Date()
+                        self?.videos.data[index].metadata.timeSincePublish = now.offset(from: date!)
                     }
                 }
             } catch {

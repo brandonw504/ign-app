@@ -23,7 +23,7 @@ struct Article: Hashable, Codable {
     let contentID: String
     let contentType: ArticleContentType
     let thumbnails: [ArticleThumbnail]
-    let metadata: ArticleMetadata
+    var metadata: ArticleMetadata
     let tags: [String]
     let authors: [Author]
     var commentCount: Int = 0
@@ -49,6 +49,7 @@ struct ArticleMetadata: Hashable, Codable {
     let headline: String
     let metadataDescription: String?
     let publishDate: String
+    var timeSincePublish: String = "0 seconds ago"
     let slug: String
     let networks: [ArticleNetwork]
     let state: ArticleState
