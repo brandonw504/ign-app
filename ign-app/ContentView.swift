@@ -14,11 +14,12 @@ struct AuthorView: View {
         HStack {
             if (author.thumbnail != "") {
                 AsyncImage(url: URL(string: author.thumbnail)) { image in
-                    image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                    image.resizable().aspectRatio(contentMode: .fit).cornerRadius(25)
                 } placeholder: {
                     ProgressView()
                 }
                 .padding(3)
+                .frame(width: 35, height: 35)
             }
             Text(author.name).font(.system(size: 12))
             Spacer()
@@ -129,23 +130,27 @@ struct ContentView: View {
                         ForEach(articleService.articles.data, id: \.self) { article in
                             ArticleView(article: article)
                         }
+                        ProgressView()
+                        .onAppear {
+                            articleService.fetch()
+                            ArticleService.startingFrom += 10
+                        }
                     }
                     .navigationTitle("IGN")
                     .navigationBarTitleDisplayMode(.inline)
-                    .onAppear {
-                        articleService.fetch()
-                    }
                 } else {
                     List {
                         ForEach(videoService.videos.data, id: \.self) { video in
                             VideoView(video: video)
                         }
+                        ProgressView()
+                        .onAppear {
+                            videoService.fetch()
+                            VideoService.startingFrom += 10
+                        }
                     }
                     .navigationTitle("IGN")
                     .navigationBarTitleDisplayMode(.inline)
-                    .onAppear {
-                        videoService.fetch()
-                    }
                 }
             }
         }

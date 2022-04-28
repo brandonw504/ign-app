@@ -13,11 +13,12 @@ import Foundation
  */
 
 class ArticleService: ObservableObject {
+    static var startingFrom = 0
     @Published var articles: Articles = Articles(count: 0, startIndex: 0, data: [])
     let dateFormatter = ISO8601DateFormatter()
     
     func fetch() {
-        guard let url = URL(string: "https://ign-apis.herokuapp.com/articles") else {
+        guard let url = URL(string: "https://ign-apis.herokuapp.com/articles?startIndex=\(ArticleService.startingFrom)") else {
             return
         }
         
@@ -32,7 +33,8 @@ class ArticleService: ObservableObject {
             do {
                 let articles = try JSONDecoder().decode(Articles.self, from: data)
                 DispatchQueue.main.async {
-                    self?.articles = articles
+//                    self?.articles = articles
+                    self?.articles.data.append(contentsOf: articles.data)
                     let commentService = CommentService()
                     
                     // go through each article and fill in the number of comments and the time since it was published

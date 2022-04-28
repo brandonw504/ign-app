@@ -14,10 +14,11 @@ import Foundation
 
 class VideoService: ObservableObject {
     @Published var videos: Videos = Videos(count: 0, startIndex: 0, data: [])
+    static var startingFrom = 0
     let dateFormatter = ISO8601DateFormatter()
     
     func fetch() {
-        guard let url = URL(string: "https://ign-apis.herokuapp.com/videos") else {
+        guard let url = URL(string: "https://ign-apis.herokuapp.com/videos?startIndex=\(VideoService.startingFrom)") else {
             return
         }
         
