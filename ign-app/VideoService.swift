@@ -33,19 +33,25 @@ class VideoService: ObservableObject {
             do {
                 let videos = try JSONDecoder().decode(Videos.self, from: data)
                 DispatchQueue.main.async {
-                    self?.videos = videos
+                    guard let self = self else {
+                        print("Error: self is nil")
+                        return
+                    }
+                    
+                    self.videos.data.append(contentsOf: videos.data)
                     let commentService = CommentService()
                     
                     // go through each video and fill in the number of comments and the time since it was published
+                    let videosSize = self.videos.data.count - 1
                     for (index, video) in videos.data.enumerated() {
                         commentService.contentID = video.contentID
                         commentService.fetch { comments in
-                            self?.videos.data[index].commentCount = comments?.content.first?.count ?? 0
+                            self.videos.data[videosSize - index].commentCount = comments?.content.first?.count ?? 0
                         }
                         
-                        let date = self?.dateFormatter.date(from: video.metadata.publishDate)!
+                        let date = self.dateFormatter.date(from: video.metadata.publishDate)!
                         let now = Date()
-                        self?.videos.data[index].metadata.timeSincePublish = now.offset(from: date!)
+                        self.videos.data[videosSize - index].metadata.timeSincePublish = now.offset(from: date)
                     }
                 }
             } catch {

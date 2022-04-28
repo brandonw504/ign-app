@@ -33,20 +33,25 @@ class ArticleService: ObservableObject {
             do {
                 let articles = try JSONDecoder().decode(Articles.self, from: data)
                 DispatchQueue.main.async {
-//                    self?.articles = articles
-                    self?.articles.data.append(contentsOf: articles.data)
+                    guard let self = self else {
+                        print("Error: self is nil")
+                        return
+                    }
+                    
+                    self.articles.data.append(contentsOf: articles.data)
                     let commentService = CommentService()
                     
                     // go through each article and fill in the number of comments and the time since it was published
+                    let articlesSize = self.articles.data.count - 1
                     for (index, article) in articles.data.enumerated() {
                         commentService.contentID = article.contentID
                         commentService.fetch { comments in
-                            self?.articles.data[index].commentCount = comments?.content.first?.count ?? 0
+                            self.articles.data[articlesSize - index].commentCount = comments?.content.first?.count ?? 0
                         }
                         
-                        let date = self?.dateFormatter.date(from: article.metadata.publishDate)!
+                        let date = self.dateFormatter.date(from: article.metadata.publishDate)!
                         let now = Date()
-                        self?.articles.data[index].metadata.timeSincePublish = now.offset(from: date!)
+                        self.articles.data[articlesSize - index].metadata.timeSincePublish = now.offset(from: date)
                     }
                 }
             } catch {
