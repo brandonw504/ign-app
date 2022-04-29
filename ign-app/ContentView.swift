@@ -34,7 +34,7 @@ struct ArticleView: View {
         Section {
             VStack {
                 HStack {
-                    Text(article.metadata.timeSincePublish).padding(3).font(.system(size: 12))
+                    Text(article.metadata.timeSincePublish).padding(3).font(.system(size: 12)).foregroundColor(.red)
                     Spacer()
                 }
                 Divider()
@@ -77,15 +77,18 @@ struct VideoView: View {
             ZStack {
                 VStack {
                     HStack {
-                        Text(video.metadata.timeSincePublish).padding(3).font(.system(size: 12))
+                        Text(video.metadata.timeSincePublish).padding(3).font(.system(size: 12)).foregroundColor(.red)
                         Spacer()
                     }
                     Divider()
                     if let url = video.thumbnails.last?.url {
-                        AsyncImage(url: URL(string: url)) { image in
-                            image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
-                        } placeholder: {
-                            ProgressView()
+                        ZStack {
+                            Image(systemName: "play")
+                            AsyncImage(url: URL(string: url)) { image in
+                                image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
+                            } placeholder: {
+                                ProgressView()
+                            }
                         }
                     }
                     HStack {
@@ -114,47 +117,64 @@ struct ContentView: View {
     let contentTypes = ["Articles", "Videos"]
     @State var content = "Articles"
     
+    init() {
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     var body: some View {
         NavigationView {
-            VStack {
-                Picker("Choose Content", selection: $content) {
-                    ForEach(contentTypes, id: \.self) {
-                        Text($0)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(10)
-                
-                if (content == "Articles") {
-                    List {
-                        ForEach(articleService.articles.data, id: \.self) { article in
-                            ArticleView(article: article)
-                        }
-                        ProgressView()
-                        .onAppear {
-                            articleService.fetch()
-                            ArticleService.startingFrom += 10
+            ZStack(alignment: .topLeading) {
+                Rectangle().fill(Color.red).edgesIgnoringSafeArea(.top).frame(height: 0)
+                Divider()
+                VStack {
+                    Picker("Choose Content", selection: $content) {
+                        ForEach(contentTypes, id: \.self) {
+                            Text($0)
                         }
                     }
-                    .navigationTitle("IGN")
-                    .navigationBarTitleDisplayMode(.inline)
-                } else {
-                    List {
-                        ForEach(videoService.videos.data, id: \.self) { video in
-                            VideoView(video: video)
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(10)
+                    
+                    if (content == "Articles") {
+                        List {
+                            ForEach(articleService.articles.data, id: \.self) { article in
+                                ArticleView(article: article)
+                            }
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                            .onAppear {
+                                articleService.fetch()
+                                ArticleService.startingFrom += 10
+                            }
                         }
-                        ProgressView()
-                        .onAppear {
-                            videoService.fetch()
-                            VideoService.startingFrom += 10
+                        .navigationTitle("IGN")
+                        .navigationBarTitleDisplayMode(.inline)
+                    } else {
+                        List {
+                            ForEach(videoService.videos.data, id: \.self) { video in
+                                VideoView(video: video)
+                            }
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                Spacer()
+                            }
+                            .onAppear {
+                                videoService.fetch()
+                                VideoService.startingFrom += 10
+                            }
                         }
+                        .navigationTitle("IGN")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
-                    .navigationTitle("IGN")
-                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }
         .navigationViewStyle(.stack)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
