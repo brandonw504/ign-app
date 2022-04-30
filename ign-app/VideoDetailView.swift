@@ -20,7 +20,10 @@ struct VideoDetailView: View {
                         Text(video.metadata.timeSincePublish).padding(3).font(.system(size: 12)).foregroundColor(.red)
                         Spacer()
                     }
-                    Text(video.metadata.title).font(.headline)
+                    HStack {
+                        Text(video.metadata.title).font(.headline)
+                        Spacer()
+                    }
                     if let url = video.assets.last?.url {
                         VideoPlayer(player: AVPlayer(url: URL(string: url)!)).cornerRadius(15).frame(height: 200)
                     }

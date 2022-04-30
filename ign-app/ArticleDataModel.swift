@@ -5,11 +5,6 @@
 //  Created by Brandon Wong on 4/24/22.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? newJSONDecoder().decode(Welcome.self, from: jsonData)
-
 import Foundation
 
 // MARK: - Articles
@@ -47,7 +42,7 @@ enum ArticleContentType: String, Codable {
 // MARK: - Metadata
 struct ArticleMetadata: Hashable, Codable {
     let headline: String
-    let metadataDescription: String?
+    var metadataDescription: String = ""
     let publishDate: String
     var timeSincePublish: String = "0 seconds ago"
     let slug: String

@@ -12,6 +12,7 @@ struct AuthorView: View {
     
     var body: some View {
         HStack {
+            // while the image is loading or if an image doesn't exist, displays a silhouette
             AsyncImage(url: URL(string: author.thumbnail)) { image in
                 image.resizable().aspectRatio(contentMode: .fit).cornerRadius(25)
             } placeholder: {
@@ -19,6 +20,7 @@ struct AuthorView: View {
             }
             .padding(3)
             .frame(width: 35, height: 35)
+            
             Text(author.name).font(.system(size: 12)).padding(3)
             Spacer()
         }
@@ -36,27 +38,38 @@ struct ArticleView: View {
                         Text(article.metadata.timeSincePublish).padding(3).font(.system(size: 12)).foregroundColor(.red)
                         Spacer()
                     }
+                    
                     Divider()
+                    
                     HStack {
                         Text(article.metadata.headline).font(.headline).padding(3)
                         Spacer()
                     }
+                    
                     if let url = article.thumbnails.last?.url {
+                        // show a progress view until the image loads
                         AsyncImage(url: URL(string: url)) { image in
                             image.resizable().aspectRatio(contentMode: .fit).cornerRadius(15)
                         } placeholder: {
                             ProgressView()
                         }
                     }
+                    
                     if let desc = article.metadata.metadataDescription {
-                        Text(desc)
+                        HStack {
+                            Text(desc.stringByDecodingHTMLEntities)
+                            Spacer()
+                        }
                     }
+                    
                     if let authors = article.authors {
                         ForEach(authors, id: \.self) { author in
                             AuthorView(author: author)
                         }
                     }
+                    
                     Divider()
+                    
                     HStack {
                         Spacer()
                         Image(systemName: "message")
@@ -64,6 +77,7 @@ struct ArticleView: View {
                     }
                     .padding(5)
                 }
+                
                 if let url = "https://ign.com/articles/\(article.metadata.slug)" {
                     Link(destination: URL(string: url)!) {
                         EmptyView()

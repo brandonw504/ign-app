@@ -7,11 +7,6 @@
 
 import Foundation
 
-/*
- API link
- https://ign-apis.herokuapp.com/videos
- */
-
 class VideoService: ObservableObject {
     static var doneShowing = false
     static var startingFrom = 0
@@ -26,7 +21,7 @@ class VideoService: ObservableObject {
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             // make sure there is actually data
             guard let data = data, error == nil else {
-                print("Error")
+                print("Error no data")
                 return
             }
             
@@ -39,17 +34,20 @@ class VideoService: ObservableObject {
                         return
                     }
                     
+                    // add new data to what we already have
                     self.videos.data.append(contentsOf: videos.data)
                     let commentService = CommentService()
                     
                     // go through each video and fill in the number of comments and the time since it was published
                     let videosSize = self.videos.data.count - 1
                     for (index, video) in videos.data.enumerated() {
+                        // finds the number of comments based on the video's contentID
                         commentService.contentID = video.contentID
                         commentService.fetch { comments in
                             self.videos.data[videosSize - index].commentCount = comments?.content.first?.count ?? 0
                         }
                         
+                        // calculates the time in between the now and the video's publish date
                         let date = self.dateFormatter.date(from: video.metadata.publishDate)!
                         let now = Date()
                         self.videos.data[videosSize - index].metadata.timeSincePublish = now.offset(from: date)

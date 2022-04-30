@@ -21,7 +21,6 @@ struct ContentView: View {
         NavigationView {
             ZStack(alignment: .topLeading) {
                 Rectangle().fill(Color.red).edgesIgnoringSafeArea(.top).frame(height: 0)
-                Divider()
                 VStack {
                     Picker("Choose Content", selection: $content) {
                         ForEach(contentTypes, id: \.self) {
@@ -37,6 +36,7 @@ struct ContentView: View {
                                 ArticleView(article: article)
                             }
                             if (!ArticleService.doneShowing) {
+                                // start loading the next batch when you reach the bottom of the page and the progress view appears
                                 HStack {
                                     Spacer()
                                     ProgressView()
@@ -44,21 +44,23 @@ struct ContentView: View {
                                 }
                                 .onAppear {
                                     articleService.fetch()
+                                    // loads 10 at a time, so we start loading from there for the next cycle
                                     ArticleService.startingFrom += 10
+                                    // make sure that we don't keep trying to load articles past 300, as specified in the API
                                     if (ArticleService.startingFrom >= 300) {
                                         ArticleService.doneShowing = true
                                     }
                                 }
                             }
                         }
-                        .navigationTitle("IGN")
-                        .navigationBarTitleDisplayMode(.inline)
+                        
                     } else {
                         List {
                             ForEach(videoService.videos.data, id: \.self) { video in
                                 VideoView(video: video)
                             }
                             if (!VideoService.doneShowing) {
+                                // start loading the next batch when you reach the bottom of the page and the progress view appears
                                 HStack {
                                     Spacer()
                                     ProgressView()
@@ -66,18 +68,20 @@ struct ContentView: View {
                                 }
                                 .onAppear {
                                     videoService.fetch()
+                                    // loads 10 at a time, so we start loading from there for the next cycle
                                     VideoService.startingFrom += 10
+                                    // make sure that we don't keep trying to load articles past 300, as specified in the API
                                     if (VideoService.startingFrom >= 300) {
                                         VideoService.doneShowing = true
                                     }
                                 }
                             }
                         }
-                        .navigationTitle("IGN")
-                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
             }
+            .navigationTitle("IGN")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)
         .accentColor(.white)
