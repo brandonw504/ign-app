@@ -10,6 +10,20 @@ This app makes use of pagination, and only loads more articles and videos as the
 
 ![Articles](./screenshots/screenshots.png)
 
+## Personal Introduction
+
+I heard about the CodeFoo program from a friend and was immediately interested because it was a breath of fresh air from the typical application process. It was perfect because I enjoy developing useful applications much more than solving Leetcode problems. When I was younger, I used many of IGN’s Lego game walkthroughs, and I’d love to pay it forward. Video games were an important part of my childhood, and I had always wondered what it would be like to work in the gaming industry. An internship with IGN would be the perfect opportunity to step behind the curtain and learn about this creative craft. As an avid software engineer, I think I would make valuable contributions to the IGN team.
+
+I’m currently a freshman, but I’m on track to graduate in 3 years, so I will be finished by June 2024. I’m experienced in C++, Swift, Java, and Python. I’ve also worked with data structures and algorithms, and am building my knowledge by tackling more projects. Using SwiftUI, I built an iOS app that records athletes’ marks in track and field events. This solution addressed the inefficiencies in recording marks on paper at track meets. I also developed a Game of Thrones character database built into a Next.js webpage, which I made on the side while enjoying the books.
+
+I demonstrated leadership and communication skills in school clubs. On my high school’s track team, I coached my teammates in long and triple jump, teaching techniques and drills to 10 other athletes. Now, I’m a front-end developer at #include, creating websites for clubs and local businesses at UC Davis. I’m on top of my work, so I often help others with their sections of the website. Thus far, I’ve built and styled several Next.js webpages and learned about SEO best practices. I also gained experience with teamwork under pressure while participating in a hackathon, HackDavis.
+
+I’m confident that my knowledge and work ethic would make me a valuable asset to the IGN team.
+
+Thank you for your consideration,
+Brandon Wong
+
+
 ## How many Voltorbs does it take to power Jubilife City?
 
 Voltorbs may be able to produce electricity, but are also capable of self-destructing. Perhaps they would produce more electricity through self-destruction than from generating electricity, because they would need to be fed with electricity and housed. This uses up valuable resources that could supply others, and the Voltorbs would live miserable lives if they’re constantly hooked up to the power grid anyways. One could even argue that self-destruction to power a city would be a noble cause, and better than forcing small animals to fight each other for money.
