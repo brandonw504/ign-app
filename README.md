@@ -10,6 +10,10 @@ This app makes use of pagination, and only loads more articles and videos as the
 
 ![Articles](./screenshots/screenshots.png)
 
+## Running the App
+
+Clone the repository, open it in Xcode, and run it on the simulator. If the content isn't loading, the API may be down.
+
 ## Personal Introduction
 
 I heard about the CodeFoo program from a friend and was immediately interested because it was a breath of fresh air from the typical application process. It was perfect because I enjoy developing useful applications much more than solving Leetcode problems. When I was younger, I used many of IGN’s Lego game walkthroughs, and I’d love to pay it forward. Video games were an important part of my childhood, and I had always wondered what it would be like to work in the gaming industry. An internship with IGN would be the perfect opportunity to step behind the curtain and learn about this creative craft. As an avid software engineer, I think I would make valuable contributions to the IGN team.
@@ -23,7 +27,6 @@ I’m confident that my knowledge and work ethic would make me a valuable asset 
 Thank you for your consideration,
 
 Brandon Wong
-
 
 ## How many Voltorbs does it take to power Jubilife City?
 
