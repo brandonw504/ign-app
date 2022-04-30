@@ -13,8 +13,9 @@ import Foundation
  */
 
 class VideoService: ObservableObject {
-    @Published var videos: Videos = Videos(count: 0, startIndex: 0, data: [])
+    static var doneShowing = false
     static var startingFrom = 0
+    @Published var videos: Videos = Videos(count: 0, startIndex: 0, data: [])
     let dateFormatter = ISO8601DateFormatter()
     
     func fetch() {

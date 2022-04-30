@@ -13,6 +13,7 @@ import Foundation
  */
 
 class ArticleService: ObservableObject {
+    static var doneShowing = false
     static var startingFrom = 40
     @Published var articles: Articles = Articles(count: 0, startIndex: 0, data: [])
     let dateFormatter = ISO8601DateFormatter()

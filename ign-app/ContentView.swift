@@ -36,14 +36,19 @@ struct ContentView: View {
                             ForEach(articleService.articles.data, id: \.self) { article in
                                 ArticleView(article: article)
                             }
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                            .onAppear {
-                                articleService.fetch()
-                                ArticleService.startingFrom += 10
+                            if (!ArticleService.doneShowing) {
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                    Spacer()
+                                }
+                                .onAppear {
+                                    articleService.fetch()
+                                    ArticleService.startingFrom += 10
+                                    if (ArticleService.startingFrom >= 300) {
+                                        ArticleService.doneShowing = true
+                                    }
+                                }
                             }
                         }
                         .navigationTitle("IGN")
@@ -53,14 +58,19 @@ struct ContentView: View {
                             ForEach(videoService.videos.data, id: \.self) { video in
                                 VideoView(video: video)
                             }
-                            HStack {
-                                Spacer()
-                                ProgressView()
-                                Spacer()
-                            }
-                            .onAppear {
-                                videoService.fetch()
-                                VideoService.startingFrom += 10
+                            if (!VideoService.doneShowing) {
+                                HStack {
+                                    Spacer()
+                                    ProgressView()
+                                    Spacer()
+                                }
+                                .onAppear {
+                                    videoService.fetch()
+                                    VideoService.startingFrom += 10
+                                    if (VideoService.startingFrom >= 300) {
+                                        VideoService.doneShowing = true
+                                    }
+                                }
                             }
                         }
                         .navigationTitle("IGN")
