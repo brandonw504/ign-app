@@ -4,9 +4,11 @@ This mobile app built with SwiftUI provides a convenient mobile view for all the
 
 ## Overview
 
-This app consists of two tabs: articles and videos. Each loads a list of content and any relevant information, if available. Each article cell will link to the article on the IGN website, when the API is updated to provide the links. Each video cell links to a page with the video and a short description.
+This app consists of two tabs: articles and videos. Each loads a list of content and any relevant information (title, thumbnail, author, comments, time since publishing), if available. Each article cell links to the article on the IGN website. Each video cell links to a page with the video and a short description.
 
 This app makes use of pagination, and only loads more articles and videos as the user scrolls to the bottom of the page.
+
+![Articles](./screenshots/screenshots.png)
 
 ## How many Voltorbs does it take to power Jubilife City?
 
