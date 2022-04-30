@@ -21,6 +21,7 @@ I demonstrated leadership and communication skills in school clubs. On my high s
 I’m confident that my knowledge and work ethic would make me a valuable asset to the IGN team.
 
 Thank you for your consideration,
+
 Brandon Wong
 
 
