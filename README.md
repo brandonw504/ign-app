@@ -16,7 +16,7 @@ Clone the repository, open it in Xcode, and run it on the simulator. If the cont
 
 ## Personal Introduction
 
-I heard about the CodeFoo program from a friend and was immediately interested because it was a breath of fresh air from the typical application process. It was perfect because I enjoy developing useful applications much more than solving Leetcode problems. When I was younger, I used many of IGN’s Lego game walkthroughs, and I’d love to pay it forward. Video games were an important part of my childhood, and I had always wondered what it would be like to work in the gaming industry. An internship with IGN would be the perfect opportunity to step behind the curtain and learn about this creative craft. As an avid software engineer, I think I would make valuable contributions to the IGN team.
+I heard about the CodeFoo program from a friend and was immediately interested because it was a breath of fresh air from the typical application process. It was perfect because I enjoy developing useful applications much more than solving Leetcode problems. When I was younger, I used many of IGN’s Lego game walkthroughs, and I’d love to pay it forward. Video games were an important part of my childhood, and have allowed me to strengthen bonds with friends. We always trusted IGN when looking for the latest video game news, and I had always wondered what it would be like to work in the gaming and gaming news industry. An internship with IGN would be the perfect opportunity to step behind the curtain and learn about this creative craft. As an avid software engineer, I think I would make valuable contributions to the IGN team.
 
 I’m currently a freshman, but I’m on track to graduate in 3 years, so I will be finished by June 2024. I’m experienced in C++, Swift, Java, and Python. I’ve also worked with data structures and algorithms, and am building my knowledge by tackling more projects. Using SwiftUI, I built an iOS app that records athletes’ marks in track and field events. This solution addressed the inefficiencies in recording marks on paper at track meets. I also developed a Game of Thrones character database built into a Next.js webpage, which I made on the side while enjoying the books.
 
@@ -28,7 +28,7 @@ Thank you for your consideration,
 
 Brandon Wong
 
-## How many Voltorbs does it take to power Jubilife City?
+## How many Voltorbs does it take to power Jubilife Village/City?
 
 It's difficult to know exactly how much energy a Voltorb produces. In this picture, the Voltorb is glowing and likely produces a similar amount of light to a floodlight, sort of like what's present in football stadiums.
 
