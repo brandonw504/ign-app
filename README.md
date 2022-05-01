@@ -30,8 +30,18 @@ Brandon Wong
 
 ## How many Voltorbs does it take to power Jubilife City?
 
+It's difficult to know exactly how much energy a Voltorb produces. In this picture, the Voltorb is glowing and likely produces a similar amount of light to a floodlight, sort of like what's present in football stadiums.
+
+![Voltorb](./screenshots/voltorb.jpeg)
+
+Floodlights in stadiums often consume about 400 W of power, as stated in this article: [Floodlight power consumption](https://www.eslightbulbs.com/products/high-power-led-flood-lights). Let's assume that a Voltorb outputs 400 W every time it performs Discharge. Voltorbs can perform Discharge every 2.5 seconds [Discharge cooldown](https://gamepress.gg/pokemongo/pokemon-move/discharge), so it could Discharge 34,560 times a day and produce 576,000 W, or 576 kilowatts per hour. The average American household uses 10,715 kWh per year [American household energy consumption](https://www.eia.gov/tools/faqs/faq.php?id=97&t=3). We'll assume that Jubilife Village uses the equivalent of 25 American households, so Jubilife Village would require 734 kWh to power it. We'd need two Voltorbs, then, to power Jubilife Village!
+
+![Jubilife Village](./screenshots/jubilife-village.png)
+
+Another take, but with Jubilife City because the link brought me to the Jubilife City wiki:
+
 Voltorbs may be able to produce electricity, but are also capable of self-destructing. Perhaps they would produce more electricity through self-destruction than from generating electricity, because they would need to be fed with electricity and housed. This uses up valuable resources that could supply others, and the Voltorbs would live miserable lives if they’re constantly hooked up to the power grid anyways. One could even argue that self-destruction to power a city would be a noble cause, and better than forcing small animals to fight each other for money.
 
 For this calculation, I’ll assume that when a Voltorb self-destructs, it breaks all of its atomic bonds and releases that energy. In the anime, Voltorb sometimes disappears after self-destructing, so this could potentially happen. So, we can use E = mc2 to determine how much energy each Voltorb would release. With the mass of an average Voltorb coming in at 10.4 kilograms, a single Voltorb’s self-destruction would release E = 10.4 kg * (299,792,458 m/s)^2 = 9.35 ⨉ 10^17 joules of energy! This is 9.35 ⨉ 10^17 watts, or 9.35 ⨉ 10^8 gigawatts. A typical nuclear power plant produces about 1 gigawatt of power, so a single Voltorb could produce the same amount of energy as almost 1 billion nuclear power plants!
 
-I’ll assume that we can somehow contain the explosion and have enough batteries to store all of the produced energy. Jubilife City is very urban, with many skyscrapers, even if it has very few residents (only 124 in Pokemon Platinum). We’ll compare Jubilife City to New York City as an overestimate. New York City uses around 11,000 megawatts of power per day. This means that a single Voltorb would power Jubilife City (or New York City) for 85 million days, or about 233,000 years! So, you’ll only need to catch one Voltorb every 233,000 years, which is probably about as energy efficient as you could ever get!
+I’ll assume that we can somehow contain the explosion and have enough batteries to store all of the produced energy. Jubilife City is very urban, with many skyscrapers, even if it has very few residents (only 124 in Pokemon Platinum). We’ll compare Jubilife City to New York City as an overestimate. Estimating, New York City uses around 11,000 megawatts of power per day [NYC power consumption](https://www1.nyc.gov/site/sustainability/our-programs/energy.page). This means that a single Voltorb would power Jubilife City (or New York City) for 85 million days, or about 233,000 years! So, you’ll only need to catch one Voltorb every 233,000 years, which is probably about as energy efficient as you could ever get!
